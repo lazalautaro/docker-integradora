@@ -103,15 +103,17 @@ Antes de poder correr la aplicación, necesitamos obtener el código fuente y de
 
 - **1.1)** Ejecute el comando correspondiente para buildear la imagen. Elija un nombre de imagen y un tag acorde. 
     ```bash
-    # Escriba acá el comando utilizado
+    docker build -t todo-manager:v1 ./app
     ```
 - **1.2)** ¿Qué espacio ocupa la imagen una vez creada?
     ```bash
-    # Espacio utilizado
+    docker images
     ```
 - **1.3)** ¿Puede hacer algo para optimizar o mejorar la imagen?. Describa qué modificaciones puede hacer para optimizar la imagen.
     ```bash
-    # Describa que podría hacer para mejorar u optimizar la creación de la imágen.
+    # Cache ineficiente: Copiar todo antes de instalar dependencias invalida la cache en cada cambio de código
+    Tamaño: No se limpia el cache de yarn
+    Faltan health checks.
     ```
 
 
