@@ -128,18 +128,23 @@ Una vez creada la imágen, debería ser capaz de correr la aplicación.
 
 - **1.4)** Ejecute un comando para poder correr la aplicación.
     ```bash
-    # Escriba acá el comando
+    #  docker run --name todo-container -p 8080:3000 --rm todo-manager:v1
     ```
 - **1.5)** Explique el comando de la respuesta anterior y cada parámetro enviado.
     ```bash
-    # Escriba la explicación
+    #   run: para levantar un contenedor nuevo
+    #   --name: para asignarle un nombre especifico al contenedor
+    #   -p 8080:3000: para exponer el puerto 3000 del contenedor al puerto 8080 del host
+    #   --rm: para borrar el contenedor al finalizarlo
+    #   todo-manager:v1: nombre de la imagen buildeada con su version
     ```
 - **1.6)** ¿Cómo puede saber si el contenedor está corriendo?
     ```bash
-    # Escriba acá el comando
+    docker ps
+
     ```
 - **1.7)** Adjunte una captura de pantalla con la aplicación funcionando con la URL utilizada para acceder. Reemplace la imágen siguiente por su captura de pantalla.
-    ![](./imgs/broken_img.png)
+    ![](<img width="1916" height="1034" alt="image" src="https://github.com/user-attachments/assets/2a13b720-3405-41e1-9f50-fae6206f3a9c" />)
 
 
 ## Parte 2 - Actualizar aplicación
