@@ -174,11 +174,11 @@ La actualización del código recientemente realizada deja obsoleta la antigua v
 
 - **2.2)** Elimine la imágen y el contenedor hecho en el punto anterior: Mostrar comandos utilizados.
     ```bash
-    # Escriba acá el comando utilizado
+    #     docker image rm todo-manager:v1
     ```
 - **2.3)** ¿Como puede listar las imágenes para comprobar que se ha eliminado la imagen del punto anterior?
     ```bash
-    # Escriba acá el comando utilizado
+    # docker images
     ```
 
 
@@ -213,7 +213,8 @@ Los datos en esta APP se guardan en un archivo `/etc/todos/todo.db`.
 
 - **4.1)** Escriba los comandos necesarios para persistir la base de datos. Decida que tipo de persistencia es la adecuada para su app ([Bind mounts](https://docker.idepba.com.ar/clase5.html#/bind_mounts) o [volumes](https://docker.idepba.com.ar/clase5.html#/volumes))
     ```bash
-    # Escriba el comando necesario
+    # docker volume create todo_volume
+    docker run --rm -it -v todo_volume:/etc/todos -p 8080:3000 todo-manager:v2
     ```
 
 
@@ -257,19 +258,19 @@ En la aplicación también es posible setear variables de entorno para parametri
 
 - **5.1)** [Crear una red](https://docker.idepba.com.ar/clase4.html#/network_create) para conexión entre los contenedores que servirá también para conectar a la aplicación.
     ```bash
-    # Escriba acá el comando utilizado
+    #     docker network create --driver bridge todo_network
     ```
 - **5.2)** [Crear un nuevo volumen](https://docker.idepba.com.ar/clase5.html#/volume_create) para persistir los datos de la base MySQL. El path donde se almacenan los datos en el contenedor MySQL es `/var/lib/mysql`.
     ```bash
-    # Escriba acá el comando utilizado
+    #     docker volume create mysql_volume
     ```
 - **5.3)** Iniciar el _contenedor de base de datos_ utilizando el comando `docker run` y enviando las variables de entorno necesarias.
     ```bash
-    # Escriba acá el comando utilizado
+    # docker run -d --name mysql_db --network todo_network -v mysql_volume:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=pass123 -e MYSQL_DATABASE=todos mysql:8.0
     ```
 - **5.4)** Iniciar el _contenedor de la aplicación_ utilizando el comando `docker run` enviando las variables de entornos necesarias para la conexión con la base de datos.
     ```bash
-    # Escriba acá el comando utilizado
+    #     docker run -d --name todo_app --network todo_network -p 8080:3000 -e MYSQL_HOST=mysql_db -e MYSQL_USER=root -e MYSQL_PASSWORD=pass123 -e MYSQL_DB=todos todo-manager:v2
     ```
 
 > [!TIP]
